@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* General Page Style */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Open Sans", sans-serif;
+            background-color: #353535;
+            color: #ffffff;
+            display: flex;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 250px;
+            background: #222222;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            color: #ae9548;
+            border-right: 3px solid #ae9548;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background: #ae9548;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding-left: 30px;
+            width: 130%;
+        }
+
+        /* Section Styling */
+        section {
+            height: 100vh;
+            padding: 5px 50px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            color: #353535;
+        }
+
+        section h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #ae9548;
+            font-weight: bold;
+        }
+
+        section p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h2>User Panel</h2>
+            <ul>
+                <li><a href="#dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#bookings"><i class="fas fa-calendar-check"></i> My Bookings</a></li>
+                <li><a href="#profile"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="../login.html" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <section id="dashboard">
+                <h1>Welcome, User</h1>
+                <p>Here you can view and manage your bookings.</p>
+            </section>
+
+            <section id="bookings">
+                <h1>My Bookings</h1>
+                <p>View your past and upcoming bookings.</p>
+            </section>
+
+            <section id="profile">
+                <h1>Profile</h1>
+                <p>Update your personal details and preferences.</p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $(".sidebar ul li a").click(function(e) {
+                e.preventDefault();
+                let target = $(this).attr("href");
+                $("html, body").animate({
+                    scrollTop: $(target).offset().top
+                }, 800);
+            });
+        });
+
+        //logout
+        document.getElementById("logout-btn").addEventListener("click", function (event) {
+            event.preventDefault();
+    
+            // Clear session storage/local storage (if used)
+            sessionStorage.clear();
+            localStorage.clear();
+    
+            // Redirect to login page
+            window.location.href = "../login.html";
+        });
+
+    </script>
+</body>
+</html>
